@@ -4,7 +4,11 @@
   "type": "module",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
   "devDependencies": {
+    "dotenv": "^16.0.0",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
