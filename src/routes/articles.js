@@ -1,11 +1,17 @@
 import { Router } from 'express';
-import getAPIData from '../helpers/GetData.js';
+import Pagination from '../middlewares/pagination.js';
+import ArticleModel from '../models/Article.js';
+import ArticlesController from '../controllers/Article.js';
 
 const articlesRoutes = Router();
+const articlesController = ArticlesController();
 
-articlesRoutes.get('/', async (req, res) => {
-  const data = await getAPIData();
-  return res.json(data);
-});
+articlesRoutes.get(
+  '/',
+  Pagination(ArticleModel),
+  articlesController.getArticles
+);
+
+articlesRoutes.get('/:id', articlesController.getArticle);
 
 export { articlesRoutes };
