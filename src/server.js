@@ -2,11 +2,13 @@ import express from 'express';
 import 'dotenv/config';
 
 import connectDatabase from './database/database.js';
+import { router } from './routes/index.js';
 
 const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(router);
 
 app.get('/', (req, res) => {
   return res
