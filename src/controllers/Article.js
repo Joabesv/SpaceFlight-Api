@@ -36,5 +36,19 @@ export default function ArticlesController() {
     }
   }
 
-  return { getArticles, getArticle, createArticle };
+  async function deleteArticle(req, res) {
+    try {
+      const articleId = req.params.id;
+      const articleToDelete = await ArticleModel.findById(articleId);
+      await ArticleModel.findByIdAndDelete(articleToDelete);
+      return res.status(200).json({ data: articleToDelete });
+    } catch (err) {
+      return res.status(500).json({
+        msg: 'Error on delete :(',
+        err: `Error: ${err.message}`,
+      });
+    }
+  }
+
+  return { getArticles, getArticle, createArticle, deleteArticle };
 }
