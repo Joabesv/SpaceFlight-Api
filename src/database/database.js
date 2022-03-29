@@ -6,7 +6,7 @@ const connectDatabase = () => {
     mongoose.connection
       // connection error
       .on('error', error => {
-        console.log(`Failed to conect`);
+        console.log(`Failed to connect`);
         reject(error);
       })
       // Connection timeOut

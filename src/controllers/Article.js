@@ -50,5 +50,26 @@ export default function ArticlesController() {
     }
   }
 
-  return { getArticles, getArticle, createArticle, deleteArticle };
+  async function updateArticle(req, res) {
+    try {
+      const articleId = req.params.id;
+      const updates = req.body;
+      await ArticleModel.findByIdAndUpdate(articleId, updates);
+      const articleToUpdate = await ArticleModel.findById(articleId);
+      return res.status(200).json(articleToUpdate);
+    } catch (err) {
+      return res.send(400).json({
+        msg: 'Error on update',
+        err: `Error: ${err.message}`,
+      });
+    }
+  }
+
+  return {
+    getArticles,
+    getArticle,
+    createArticle,
+    updateArticle,
+    deleteArticle,
+  };
 }

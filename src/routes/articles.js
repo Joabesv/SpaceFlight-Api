@@ -19,7 +19,10 @@ articlesRoutes.get('/:id', articlesController.getArticle);
 // create new article
 articlesRoutes.post('/', articlesController.createArticle);
 
-// delete article
+// update an article
+articlesRoutes.put('/:id', articlesController.updateArticle);
+
+// delete an article
 articlesRoutes.delete('/:id', articlesController.deleteArticle);
 
 export { articlesRoutes };
