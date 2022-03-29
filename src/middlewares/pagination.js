@@ -1,4 +1,4 @@
-export default function Pagination(model) {
+export default function Paginate(model) {
   return async (req, res, next) => {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
@@ -19,7 +19,7 @@ export default function Pagination(model) {
       };
     }
     try {
-      result.results = await model.find({}).limit(limit).skip(startIndex);
+      result.results = await model.find().limit(limit).skip(startIndex);
       res.paginatedResult = result;
       next();
     } catch (e) {

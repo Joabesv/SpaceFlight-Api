@@ -14,4 +14,6 @@ articlesRoutes.get(
 
 articlesRoutes.get('/:id', articlesController.getArticle);
 
+articlesRoutes.post('/', articlesController.createArticle);
+
 export { articlesRoutes };

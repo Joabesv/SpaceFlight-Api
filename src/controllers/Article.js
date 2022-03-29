@@ -23,5 +23,18 @@ export default function ArticlesController() {
     }
   }
 
-  return { getArticles, getArticle };
+  async function createArticle(req, res) {
+    try {
+      const article = req.body;
+      const newArticle = await ArticleModel.create(article);
+      return res.status(201).json(newArticle);
+    } catch (err) {
+      return res.status(500).json({
+        msg: 'Article not created :(',
+        err: `Error: ${err.message}`,
+      });
+    }
+  }
+
+  return { getArticles, getArticle, createArticle };
 }
