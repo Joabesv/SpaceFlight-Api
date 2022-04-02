@@ -3,6 +3,7 @@ import 'dotenv/config';
 
 import connectDatabase from './database/database.js';
 import { router } from './routes/index.js';
+import { job } from './helpers/cron.js';
 
 const app = express();
 const PORT = process.env.PORT;
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 
 (async () => {
   connectDatabase();
+  job();
   app.listen(PORT, () => {
     return console.log(`Server Started at http://localhost:${PORT}`);
   });
